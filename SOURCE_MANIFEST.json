@@ -12,8 +12,8 @@
     "sha256": "66a3107d5ad6a058aab753eaac2047ccb2ed0e39465dd0fe5844da3e300d5172"
   },
   "README.md": {
-    "bytes": 4355,
-    "sha256": "552fe9d5c55e34f131f7785d056aea95685c477933e781685c9be03b08109a69"
+    "bytes": 4116,
+    "sha256": "fd338e5f0786d43eb82f70fbcbc7d4816b7cf5d0209a49294b4fb990fdd90644"
   },
   "THIRD_PARTY.md": {
     "bytes": 3009,
@@ -44,8 +44,8 @@
     "sha256": "36db1dc7bcabc61c4bf6688d9d1881de3599aa5caecde3270968d3a562acd4eb"
   },
   "docs/PUBLISHING.md": {
-    "bytes": 1505,
-    "sha256": "6fdfa7d87300caea581168744437ff6299460a42afd4d2521b6530a52359401b"
+    "bytes": 1477,
+    "sha256": "c1034c39ac21d96a5c321d8cbc8c4a26a001055f3c662bf08a0f0284d73af8ae"
   },
   "docs/SOFTFLOAT_UPSTREAM.txt": {
     "bytes": 186,

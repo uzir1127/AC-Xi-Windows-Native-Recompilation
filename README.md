@@ -5,17 +5,15 @@ The original ARM instructions are translated to C during the build and compiled
 to native x64 code. Adapted touchHLE components provide the iOS services the game
 uses. Graphics pass through ANGLE's GLES frontend to hardware Vulkan.
 
-You must supply your own matching IPA to build and play. This repository contains
-the translator, runtime changes, build scripts and dependencies. Original game
-files, generated game translations and the resulting game executable are private
-build outputs under `local/` and are excluded from the source release.
+**You need your own Ace Combat Xi 1.1.3 IPA to build and play.** This repository
+contains the port's source code, build tools and dependencies. It does not include
+the original game, its assets or a compiled game executable.
 
 ## Build and play
 
-See [BUILDING.md](docs/BUILDING.md) for the Windows toolchain setup and complete
-commands. The supported input is ACXi 1.1.3 with executable SHA-256
-`9ff36f1525925cd886490f6b0a1acaed4a510038e823e94b5f22d31d41f03873`.
-The scripts validate its identity and do not obtain game data for you.
+Follow [BUILDING.md](docs/BUILDING.md) to install the required Windows build tools.
+Then run these commands, replacing the example paths with your own. The build
+checks that your IPA is the supported version.
 
 ```powershell
 python -m pip install -r requirements.txt
@@ -25,9 +23,8 @@ python tools/stage_local.py --compiler 'C:\Tools\llvm-mingw' --angle local/angle
 .\local\player\ACXiNative.exe
 ```
 
-The private playable directory contains both game data and recompiled game code.
-Do not use that directory or the EXE as the public source download. The
-[publication instructions](docs/PUBLISHING.md) explain how to create the source ZIP.
+These commands create the playable game in `local/player` on your own PC, using
+your IPA. That folder is created during the build; it is not part of this repository.
 
 ## Features
 
