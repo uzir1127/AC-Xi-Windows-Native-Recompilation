@@ -42,5 +42,6 @@ The game audio callback queued non-silent 48 kHz stereo PCM; this check did not 
 
 ## Distribution boundary
 
-This is a local documentation preview only. No public repository, GitHub post, release or upload has been created. The private playable installation contains original game data and enhanced game-derived assets and must not be uploaded wholesale. The review folder itself contains only documentation and this HTML preview.
+The public repository at https://github.com/uzir1127/acxi-native contains README and verification documentation only. No runtime source, executable, IPA, extracted game files, saves, enhanced game-derived assets or release archive were uploaded. The private playable installation contains original game data and enhanced game-derived assets and must not be uploaded wholesale. The local review folder also contains the announcement draft, review checklist and HTML preview.
+
 
