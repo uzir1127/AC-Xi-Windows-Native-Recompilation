@@ -9,7 +9,18 @@ uses. Graphics pass through ANGLE's GLES frontend to hardware Vulkan.
 contains the port's source code, build tools and dependencies. It does not include
 the original game, its assets or a compiled game executable.
 
-## Build and play
+## Download and play
+
+Download **ACXi-Windows-Setup.zip** from the [Releases page](https://github.com/uzir1127/AC-Xi-Windows-Native-Recompilation/releases),
+then extract it. Double-click `Setup-ACXi.bat` and select your own compatible
+IPA. Once the build finishes, double-click `Play-ACXi.bat`.
+
+The download includes the tools needed to build the game. The first build can
+take a long time, especially on older PCs; leave the setup window open until it
+finishes. You need 64-bit Windows, a Vulkan-capable graphics driver and several
+gigabytes of free disk space.
+
+## Build from source
 
 Follow [BUILDING.md](docs/BUILDING.md) to install the required Windows build tools.
 Then run these commands, replacing the example paths with your own. The build
