@@ -4,7 +4,7 @@ A Windows x64 development port of **Ace Combat Xi: Skies of Incursion 1.1.3**. T
 
 The original ARM game code is statically recompiled into native x64 code through generated C. The runtime adapts touchHLE components for the iOS framework services used by the game; it does not interpret or JIT-translate ARM instructions at runtime. Rendering uses ANGLE's GLES frontend with its hardware Vulkan backend.
 
-> **Development build:** This project has passed bounded live checks, but it is not a finished release. No public runtime package is attached to this draft. See [verification](VERIFICATION.md) for what was checked and what remains open.
+> **Development build:** This project has passed bounded live checks, but it is not a finished release. No runnable public build is attached to this repository. See [verification](VERIFICATION.md) for what was checked and what remains open.
 
 ## Current features
 
@@ -54,3 +54,4 @@ About 30 game FPS and 60 display FPS means the host presents some game frames mo
 ## Credits and licensing
 
 Original game: Project Aces / Namco Bandai. Runtime foundation: touchHLE and its contributors. Graphics: ANGLE with the Vulkan backend. Other components and their licenses are listed in the local development package. A public source or binary distribution still needs its corresponding source/license and packaging review. This is an unofficial fan project.
+
