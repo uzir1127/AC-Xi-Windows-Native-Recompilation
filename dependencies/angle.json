@@ -1,0 +1,47 @@
+{
+  "component": "ANGLE GLES 1.1 frontend with explicit hardware Vulkan backend",
+  "upstream_commit": "3b89d84e9d59f75675ac4e2bef58fc068a9f0577",
+  "upstream_source": "https://github.com/google/angle/tree/3b89d84e9d59f75675ac4e2bef58fc068a9f0577",
+  "binary_distribution": "https://github.com/dsafdsaf132/angle-prebuilt/releases/tag/angle-stable-chrome-156.0.8078.48-3b89d84",
+  "archive_url": "https://github.com/dsafdsaf132/angle-prebuilt/releases/download/angle-stable-chrome-156.0.8078.48-3b89d84/angle-3b89d84-win32-x64.zip",
+  "archive_sha256": "28998fc44934f296129989237ee26237ffe88ee2ebf78e8a041dd75b0c5b2699",
+  "architecture": "Windows x86-64",
+  "runtime_backend_policy": {
+    "egl_platform": "EGL_PLATFORM_ANGLE_ANGLE",
+    "egl_backend": "EGL_PLATFORM_ANGLE_TYPE_VULKAN_ANGLE",
+    "egl_device": "EGL_PLATFORM_ANGLE_DEVICE_TYPE_HARDWARE_ANGLE",
+    "backend_fallback": false,
+    "software_fallback": false
+  },
+  "unused_files_excluded": [
+    "d3dcompiler_47.dll",
+    "vk_swiftshader.dll",
+    "vk_swiftshader_icd.json"
+  ],
+  "files": {
+    "libEGL.dll": {
+      "bytes": 502272,
+      "sha256": "0272f0bbd1dddc9381cd1f66374f0419c14660e76ea09e7a157184d76d88f64c"
+    },
+    "libGLESv2.dll": {
+      "bytes": 7897600,
+      "sha256": "c0d30e30a39e45c06d64aba2288c05eb9c275fa9ec4e6c736d2525126886ba25"
+    },
+    "vulkan-1.dll": {
+      "bytes": 1009664,
+      "sha256": "42fa23746b3b4a7a7c04d3e1538b3c0d618d9f4f3f8845a238e8b07481cf60dc"
+    },
+    "LICENSE.ANGLE.txt": {
+      "bytes": 1675,
+      "sha256": "54aff7276217df9f6b5181613999d208c9e40d2b1d51bf55217837e6871a4a63"
+    },
+    "LICENSE.Vulkan-Loader.txt": {
+      "bytes": 11868,
+      "sha256": "557bd2cc07eff373f3f26c8d5726fefe8e7fc4add97796c2fbf24f74a200214a"
+    },
+    "angle-build.json": {
+      "bytes": 2119,
+      "sha256": "d8a7b9c7156c61de928cf262b796c647922cdc17a7b393b6c20e58260db784c0"
+    }
+  }
+}

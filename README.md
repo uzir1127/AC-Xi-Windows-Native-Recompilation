@@ -1,26 +1,51 @@
 # Ace Combat Xi — Windows native recompilation
 
-A Windows x64 development port of **Ace Combat Xi: Skies of Incursion 1.1.3**. The goal is to preserve the original game behavior and timing while making the game playable with modern PC controls.
+Source project for the Windows x64 port of **Ace Combat Xi: Skies of Incursion 1.1.3**.
+The original ARM instructions are translated to C during the build and compiled
+to native x64 code. Adapted touchHLE components provide the iOS services the game
+uses. Graphics pass through ANGLE's GLES frontend to hardware Vulkan.
 
-The original ARM game code is statically recompiled into native x64 code through generated C. The runtime adapts touchHLE components for the iOS framework services used by the game; it does not interpret or JIT-translate ARM instructions at runtime. Rendering uses ANGLE's GLES frontend with its hardware Vulkan backend.
+You must supply your own matching IPA to build and play. This repository contains
+the translator, runtime changes, build scripts and dependencies. Original game
+files, generated game translations and the resulting game executable are private
+build outputs under `local/` and are excluded from the source release.
 
-> **Development build:** This project has passed bounded live checks, but it is not a finished release. No runnable public build is attached to this repository. See [verification](VERIFICATION.md) for what was checked and what remains open.
+## Build and play
 
-## Current features
+See [BUILDING.md](docs/BUILDING.md) for the Windows toolchain setup and complete
+commands. The supported input is ACXi 1.1.3 with executable SHA-256
+`9ff36f1525925cd886490f6b0a1acaed4a510038e823e94b5f22d31d41f03873`.
+The scripts validate its identity and do not obtain game data for you.
 
-- Original game simulation timing retained: sampled gameplay ran at about 30 game FPS, presented at about 60 display FPS on the test PC. The simulation has not been uncapped.
-- Keyboard, mouse and SDL controller support, including right-stick free look and the original in-game pitch-inversion option.
-- Event-driven controller vibration for gunfire, missile launches and damage. The project owner reports that vibration works on their controller; device coverage is not established.
-- F4 display and graphics settings, mobile-button visibility, keyboard/mouse options, manual settings save and optional auto-save.
-- Mobile flight buttons default Off while the original HUD, menus and mobile layout remain available.
-- F5 overlay for graphics API, hardware names, game/display frame rates, frame times and available system counters.
-- Optional enhanced local texture, text and intro assets, with an Original mode. Game-derived assets are not included in a public package.
+```powershell
+python -m pip install -r requirements.txt
+.\build.ps1 -IpaPath 'D:\Games\ACXi\game.ipa' -LlvmMingwRoot 'C:\Tools\llvm-mingw' -RunTests
+python tools/fetch_angle.py
+python tools/stage_local.py --compiler 'C:\Tools\llvm-mingw' --angle local/angle
+.\local\player\ACXiNative.exe
+```
 
-## Game data and launch
+The private playable directory contains both game data and recompiled game code.
+Do not use that directory or the EXE as the public source download. The
+[publication instructions](docs/PUBLISHING.md) explain how to create the source ZIP.
 
-You must provide your own **Ace Combat Xi 1.1.3** game data. Do not redistribute the IPA, extracted game files, saves, or the private enhanced asset pack. This draft does not include a ready-to-run public download or a clean-clone build walkthrough.
+## Features
 
-The local development package accepts the matching IPA or an extracted `ACE-Xi.app`. Keep the runtime libraries and resource folders beside the executable. The exact public installation steps will be documented after a clean, redistributable package is prepared.
+- Original game timing retained, with about 30 game FPS and 60 host presentations
+  per second observed on the tested PC. There is no frame-rate unlock.
+- Keyboard, mouse and SDL controller input, in-game pitch inversion and
+  right-stick free look.
+- Controller vibration for gunfire, missile launches, damage, destruction,
+  afterburner and stall feedback. Hardware vibration was reported working by the
+  project owner; device coverage remains limited.
+- F4 settings for output size/fullscreen, internal resolution, filtering,
+  mobile-button visibility and keyboard/mouse options. Manual Save and optional
+  Auto-save are available. Internal resolution/filtering/asset mode apply after
+  restart; output-size/fullscreen changes are live.
+- Mobile flight buttons default Off, with the original HUD and menus retained.
+- F5 hardware/API, game/display FPS and frame-time overlay.
+- Optional enhanced-asset loading code. The private enhanced texture, text and
+  movie pack is excluded; the staging script selects original assets by default.
 
 ## Controls
 
@@ -37,21 +62,27 @@ The local development package accepts the matching IPA or an extracted `ACE-Xi.a
 | Pause | Escape / F1 | Start |
 | Settings | F4 | View + Start |
 
-Menus use arrows/WASD, Enter to confirm and Escape to go back. The original in-game Controller settings remain available. Mouse flight captures the pointer from the flight view; sustained mouse-steering feel still needs hands-on validation.
+Menus use arrows/WASD and Enter/Escape. Pitch inversion for controllers remains
+in the original in-game Controller menu. F4 inversion applies to keyboard/mouse.
+Pause the original game before spending time in F4: the settings overlay itself
+does not pause the simulation. Settings save through F4; Auto-save defaults Off.
 
-## Settings
+## Status
 
-Use **F4 → Save settings**, or turn on **Auto-save settings**. Auto-save is Off by default. Mobile flight buttons are Off by default. Window size, fullscreen, internal resolution, filtering and asset mode can be saved and restored; consult the verification notes for the exact live checks completed.
+This is a development project. Bounded live checks reached Mission 1 and Extra
+Mission and covered combat, pause/resume, menus, saves, F4/F5 and window changes.
+The tested candidate showed no recurrence of the prior Vulkan crash in those
+sessions. [Verification notes](docs/VERIFICATION.md) state the exact coverage.
 
-## Status and limitations
+Full campaign completion, all aircraft/missions, sustained mouse steering feel,
+audio listening/sync, controller variations and low-end Intel laptop performance
+remain unverified. The tested PC has an i7-9750H and GTX 1650. The clean source
+build validation is recorded separately in [SOURCE_VALIDATION.md](docs/SOURCE_VALIDATION.md).
 
-The latest packaged candidate completed bounded checks in Mission 1 and Extra Mission, settings and resolution changes, pause/resume, weapons, menus, hidden and visible mobile controls, and normal shutdown. No crash or Vulkan context-loss error appeared in those test logs. That is evidence for the tested sessions, not a guarantee of stability in every mission, driver or PC.
+## Credits
 
-A full campaign clear, all missions and aircraft, sustained mouse steering, audio listening/synchronization, controller-device variations and performance on low-end Intel laptops have not been certified. See [VERIFICATION.md](VERIFICATION.md).
-
-About 30 game FPS and 60 display FPS means the host presents some game frames more than once; it does not mean the simulation produces 60 distinct frames per second.
-
-## Credits and licensing
-
-Original game: Project Aces / Namco Bandai. Runtime foundation: touchHLE and its contributors. Graphics: ANGLE with the Vulkan backend. Other components and their licenses are listed in the local development package. A public source or binary distribution still needs its corresponding source/license and packaging review. This is an unofficial fan project.
-
+Original game: Project Aces / Namco Bandai. Runtime foundation: touchHLE and its
+contributors. Graphics: ANGLE with Vulkan. See [THIRD_PARTY.md](THIRD_PARTY.md)
+and the retained notices for dependency origins and licenses. Original game
+content is not covered by the source project's license. This is an unofficial
+fan project.

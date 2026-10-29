@@ -1,0 +1,15 @@
+# ACXi native execution bridge, 2026-10-27.
+# SPDX-License-Identifier: MPL-2.0
+[package]
+name = "touchHLE_aot_wrapper"
+version = { workspace = true }
+edition = { workspace = true }
+license = { workspace = true }
+authors = { workspace = true }
+homepage = { workspace = true }
+
+[lib]
+path = "lib.rs"
+
+[build-dependencies]
+cc = { workspace = true }

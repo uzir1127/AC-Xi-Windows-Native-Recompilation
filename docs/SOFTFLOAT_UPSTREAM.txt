@@ -1,0 +1,4 @@
+Berkeley SoftFloat Release 3e
+https://github.com/ucb-bar/berkeley-softfloat-3
+Commit 497c81c1f5016dc6ef5b3219ece2f3c261d4d8f1
+ARM-VFPv2 specialization; original source notices retained.

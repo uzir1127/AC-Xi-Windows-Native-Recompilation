@@ -1,0 +1,19 @@
+# Private inputs, translations and builds must never enter the repository.
+/local/
+/runtime/target/
+**/__pycache__/
+*.pyc
+*.ipa
+*.app/
+**/hd-assets/
+**/touchHLE_sandbox/
+**/touchHLE_apps/
+**/acxi-settings.ini
+**/touchHLE_options.txt
+**/touchHLE_log.txt
+**/DUMP.txt
+**/touchHLE_wallpaper.*
+*.dmp
+*.log
+.env
+.env.*
